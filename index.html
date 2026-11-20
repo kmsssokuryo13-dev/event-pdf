@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>当日資料</title>
+<!-- PDFを先読みして、押した瞬間に開くようにする -->
+<link rel="prefetch" href="pdf/yakuwari.pdf">
+<link rel="prefetch" href="pdf/schedule.pdf">
+<style>
+*{box-sizing:border-box;margin:0}
+html,body{height:100%}
+body{font-family:system-ui,-apple-system,"Hiragino Sans","Yu Gothic UI",sans-serif;background:#f4f6f8;color:#1b2430;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;padding:24px}
+h1{font-size:1.25rem;font-weight:700;margin-bottom:8px;letter-spacing:.04em}
+a{display:flex;align-items:center;justify-content:center;width:100%;max-width:420px;min-height:88px;border-radius:14px;background:#14507a;color:#fff;text-decoration:none;font-size:1.35rem;font-weight:700;letter-spacing:.06em;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+a:nth-of-type(2){background:#1f7a5c}
+a:active{opacity:.8}
+a:focus-visible{outline:3px solid #f0a500;outline-offset:3px}
+small{color:#6b7684;font-size:.8rem;margin-top:8px}
+</style>
+</head>
+<body>
+<h1>当日資料</h1>
+<!-- ボタンを増やすときは、この a タグをコピーして href と文字を変えるだけ -->
+<a href="pdf/yakuwari.pdf" data-pdf>役割表</a>
+<a href="pdf/schedule.pdf" data-pdf>タイムスケジュール</a>
+<small>ボタンを押すとPDFが開きます</small>
+<script>
+/* PDFを差し替えたら、この数字を1つ上げる（古いPDFがキャッシュで表示されるのを防ぐ） */
+var V="1";
+document.querySelectorAll("a[data-pdf]").forEach(function(a){a.href=a.getAttribute("href")+"?v="+V});
+</script>
+</body>
+</html>
