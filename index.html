@@ -4,9 +4,6 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>当日資料</title>
-<!-- PDFを先読みして、押した瞬間に開くようにする -->
-<link rel="prefetch" href="pdf/yakuwari.pdf">
-<link rel="prefetch" href="pdf/schedule.pdf">
 <style>
 *{box-sizing:border-box;margin:0}
 html,body{height:100%}
@@ -28,7 +25,11 @@ small{color:#6b7684;font-size:.8rem;margin-top:8px}
 <script>
 /* PDFを差し替えたら、この数字を1つ上げる（古いPDFがキャッシュで表示されるのを防ぐ） */
 var V="1";
-document.querySelectorAll("a[data-pdf]").forEach(function(a){a.href=a.getAttribute("href")+"?v="+V});
+document.querySelectorAll("a[data-pdf]").forEach(function(a){
+  a.href=a.getAttribute("href")+"?v="+V;
+  /* 押されたときと同じURLでPDFを先読みしておく */
+  var l=document.createElement("link");l.rel="prefetch";l.href=a.href;document.head.appendChild(l);
+});
 </script>
 </body>
 </html>
